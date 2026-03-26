@@ -1,0 +1,3 @@
+load("/Users/rolandberg/Documents/Emory/Semester 2 (S26)/DATA 550/final/550_final_project/output/cleandataset.rds")
+load("/Users/rolandberg/Documents/Emory/Semester 2 (S26)/DATA 550/final/550_final_project/output/reporttabledata.rds")
+load("/Users/rolandberg/Documents/Emory/Semester 2 (S26)/DATA 550/final/550_final_project/output/reporttable.rds")

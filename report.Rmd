@@ -1,0 +1,68 @@
+---
+title: "DATA550 Final Project (FP4: Organization + GitHub Repository)"
+author: "Roland Berg"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Introduction
+
+This project aims to create a report summarizing county-level data on opioid prescription rates and narcotic overdose mortality in the United States between the years of 2014 and 2022. The dataset was obtained from HepVu.org, a website run by Emory University that visualizes data related to viral hepatitis in the United States; prescription rates are sourced from the Center for Disease Control and Prevention's National Center for Injury Prevention and Control, and mortality data is sourced from the CDC's National Center for Health Statistics. The dataset itself, titled "Opioid Indicators - 2022 County", is available under the Datasets -> Additional Data section at this link: https://hepvu.org/resources/#/additional-data.
+
+The dataset contains indicator data for 3221 counties within the United States and Puerto Rico. Each county is identified by name, state abbreviation, and a unique 5-digit GEO ID. Two opioid-related indicators are available for each county listed:
+
+    - Opioid prescription rates (# of opioid prescriptions dispensed/100 persons), available for for the year of 2022
+    - Narcotic overdose mortality rate (# of deaths from narcotic overdose/100,000 persons), available every year from 2014 to 2021
+    
+**Project Objectives**
+
+The analysis objectives for this report are listed below:
+
+    1. Create a table displaying the average county-level opioid prescription rate in 2022 for each state in the dataset. This table should include the state's abbreviation, the number of counties for that state with available data, and the average prescription rate for the counties of that state.
+    
+    2. Create a figure diplaying the change in narcotic overdose mortality rate in metro Atlanta's 5 core counties (Fulton, DeKalb, Cobb, Gwinnett, and Clayton County) between the years of 2014 and 2021. This figure will be a line graph displaying the trend in overdose mortality rate for each of the five counties, with time displayed on the x axis and rate displayed on the y axis.
+
+```{r, here-i-am, include=FALSE}
+here::i_am("report.Rmd")
+```
+
+```{r, load-data, include=FALSE}
+
+reporttable <- readRDS(
+  file = here::here("output/reporttable.rds")
+)
+
+reporttabledata <- readRDS(
+  file = here::here("output/reporttabledata.rds")
+)
+
+reportfigure <- readRDS(
+  file = here::here("output/reportfigure.rds")
+)
+
+```
+
+
+## Section 1: Table
+
+Below is a table displaying the average county-level opioid prescription rate in 2022 for each state in the dataset. This metric was calculated by averaging the county-level prescription rates for each state with available data:
+
+``` {r, create-table, echo=FALSE}
+
+reporttable
+
+```
+
+`r nrow(reporttabledata)` states + territories had data available. The state with the highest prescription rate was `r reporttabledata$state[reporttabledata$avg_OPR == max(reporttabledata$avg_OPR)]`, whose opioid prescription rate was `r max(reporttabledata$avg_OPR)` prescriptions/100 persons in 2022. The state with the lowest prescription rate was `r reporttabledata$state[reporttabledata$avg_OPR == min(reporttabledata$avg_OPR)]`, whose 2022 rate was `r min(reporttabledata$avg_OPR)` prescriptions/100 persons.
+
+## Section 2: Figure
+
+Below is a figure displaying the change in annual narcotic overdose mortality rate in five of metro Atlanta's core counties between the years of 2014 and 2021. The five counties in question are Clayton, Cobb, DeKalb, Fulton, and Gwinnett County:
+
+``` {r, create-figure, echo=FALSE}
+
+reportfigure
+
+```
+
+All five counties saw a similar increase in narcotic overdose mortality over the 7 years measured, particularly between the years of 2019 and 2021. Fulton County had the highest mortality rate for every year in the dataset, which Gwinnett County had the lowest mortality rate every year.
