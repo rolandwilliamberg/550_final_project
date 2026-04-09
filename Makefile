@@ -13,3 +13,7 @@ output/reportfigure.rds: code/03_make_reportfigure.R output/cleandataset.rds
 .PHONY: clean
 clean:
 	rm output*/*.rds
+	
+.PHONY: install
+install:
+	Rscript -e "renv::restore(prompt = FALSE)"

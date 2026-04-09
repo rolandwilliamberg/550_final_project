@@ -24,6 +24,15 @@ Gwinnett, and Clayton County) between the years of 2014 and 2021
     - The code that creates this figure can be found in `code/03_make_reportfigure.R`
     - The figure itself is saved in the project's `output/` folder as a `.rds` object
 
+**Instructions for Synchronizing Package Repository**
+
+In order to synchronize your package repository with this project's, please follow these instructions:
+
+1. Using your machine's terminal, navigate to the project folder (`550_final_project/`)
+2. In terminal, execute the command `make install`
+3. From there, the package repository should be synchronized!
+
+
 **Instructions for Generating Final Report**
 
 In order to compile the report, please follow these instructions:
